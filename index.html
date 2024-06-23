@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -116,3 +116,170 @@
     </script>
 </body>
 </html>
+ -->
+
+
+
+ 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .game-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .game-buttons button {
+            width: 100px;
+            height: 100px;
+            border: none;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .game-buttons button img {
+            max-width: 130%;
+            max-height: 130%;
+        }
+        .game-buttons button:hover {
+            transform: scale(1.05);
+        }
+        .game-buttons button:active {
+            transform: scale(0.95);
+        }
+        .g {
+            width: 110%;
+            height: 110%;
+        }
+        iframe {
+            width: 80%;
+            height: 80%;
+            border: none;
+            margin-top: 20px;
+            display: none;
+        }
+        #fullscreenButton {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<iframe id="gameIframe"></iframe>
+<button id="fullscreenButton" onclick="toggleFullscreen()">Fullscreen</button>
+    <div class="game-buttons">
+        <button onclick="startGame('santaparkour')">
+            <img src="https://cdn.now.gg/apps-content/com.nowgg.h5.pub474.app51083/logo/santa-parkour.png" alt="Santa-Parkour">
+        </button>
+        <button onclick="startGame('bikeracing')">
+            <img class='g' src="https://cdn.vectorstock.com/i/1000v/36/29/motocross-rider-and-motorcycle-silhouette-vector-27353629.avif" alt="Bike-Racing">
+        </button>
+        <button onclick="startGame('factorydomination')">
+            <img src="https://img.gamedistribution.com/7d900e290aa649859e4780e429323fbc-512x384.jpg" alt="Factory-Domination">
+        </button>
+        <button onclick="startGame('townbillionaire')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrOujJ0gwarhQdbBYwrXxtBAF51NUiNjJt4A&s" alt="Billionaire-City">
+        </button>
+        <button onclick="startGame('tictactoe')">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/034/549/757/small_2x/tic-tac-toe-thick-line-two-color-icons-for-personal-and-commercial-use-free-vector.jpg" alt="Tic-Tac-toe">
+        </button>
+        <button onclick="startGame('dangerdash')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqs2JcbQ5Vk4jwHyGfvHoAIESfU7U5yTC_tQ&s" alt="Danger-Dash">
+        </button>
+        <button onclick="startGame('hunterhitman')">
+            <img src="https://store-images.s-microsoft.com/image/apps.46662.13845341265807353.b16c4b1c-0624-4bc3-9043-7399220a2351.e5f2b108-40cf-4135-b9e3-e1c01f866b44?mode=scale&q=90&h=300&w=300" alt="Hunter-Hitman">
+        </button>
+        <button onclick="startGame('rallychampion')">
+            <img class='g' src="https://play-lh.googleusercontent.com/RwZJzb8UrB0dcmBXZHTsZp4Ah0XCKaSgNdyEr8Jrd7u1OYcDnw73CmUDmZ00wRYg7y2a=w240-h480-rw" alt="Rally-Champion">
+        </button>
+        <button onclick="startGame('hillclimbracing')">
+            <img class='g' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPK_1fzCwvm6eNFmBqPtxU19eNqePG5XCSdg&s" alt="Hill-Climb-Racing">
+        </button>
+        <button onclick="startGame('cyclesprint')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF13KRhb2W6oFgjIomfELZmjJfAMZBPMW4T9YrziMng68JTQh1ro3sCuU5SsfxeIa7gPI&usqp=CAU" alt="Cycle-Sprint">
+        </button>
+        <button onclick="startGame('airportcontroller')">
+            <img src="https://gameforge.com/de-DE/littlegames/includes/images/games/11753_5eb3f371ac8ac.jpg" alt="Airport-Controller">
+        </button>
+        <button onclick="startGame('amongus')">
+            <img class="w" src="https://assets-prd.ignimgs.com/2020/12/15/among-us-button-fin-1608054673652.jpg" alt="Among-Us">
+        </button>
+    </div>
+    
+    
+    <script>
+        function startGame(game) {
+            const gameUrls = {
+                'santaparkour': "https://marketjs.cdn.start.gg/9n7c9gz12jtz/v4/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'bikeracing': "https://softgames.cdn.start.gg/9p70lt0zr384/v21/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'factorydomination': "https://marketjs.cdn.start.gg/9nqlh1t66ght/v8/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'townbillionaire': "https://marketjs.cdn.start.gg/9pk3bhpqd11f/v4/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'tictactoe': "https://codethislab.cdn.start.gg/9p4z7gtl3mlh/v9/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'dangerdash': "https://cdn.ludigames.com/microsoft/start-dangerDash/03-cdn/?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'hunterhitman': "https://marketjs.cdn.start.gg/9n8bq7npxbfw/v9/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'rallychampion': "https://marketjs.cdn.start.gg/9pmdcq52j3hj/v2/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'hillclimbracing': "https://softgames.cdn.start.gg/9mw8rk6nb6kr/v9/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'cyclesprint': "https://codethislab.cdn.start.gg/9mvq9gxf024k/v5/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'airportcontroller': "https://hammerplay.cdn.start.gg/9ng6cn9hn1ps/v1/index.html?msstart_sdk_init=eyJwYXJlbnRPcmlnaW4iOiJodHRwczovL3d3dy5tc24uY29tIiwiY2xpZW50SWQiOiIwNEVBM0FFOUVFRTg2ODc5MTNDRTJFNEZFRkVFNjlCQyIsImxvY2FsZSI6ImVuLWluIiwiZW50cnlQb2ludElkIjoiY2diaW5naHAifQ",
+                'amongus': "https://html5.gamedistribution.com/9abe6af0fbb440b98a3e24bf7fb0636a/?gd_sdk_referrer_url=https%3A%2F%2Fwww.1001games.com%2Fg%2Fimpostor"
+            };
+
+            const url = gameUrls[game];
+            if (url) {
+                const iframe = document.getElementById('gameIframe');
+                iframe.src = url;
+                iframe.style.display = 'block';
+
+                const fullscreenButton = document.getElementById('fullscreenButton');
+                fullscreenButton.style.display = 'inline-block';
+            } else {
+                alert('Game not available');
+            }
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('gameIframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { 
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
